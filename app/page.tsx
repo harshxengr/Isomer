@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { prisma } from "@/lib/db"
+import prisma from "@/lib/db";
 
 export default async function Home() {
 
