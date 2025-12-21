@@ -5,7 +5,7 @@ export const appRouter = createTRPCRouter({
   getUsers: protectedProcedure.query(({ ctx }) => {
     return prisma.user.findMany({
       where: {
-        id: Number(ctx.auth.user.id),
+        id: ctx.auth.user.id,
       }
     });
   }),

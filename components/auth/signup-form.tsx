@@ -26,6 +26,7 @@ import {
 import { Input } from "../ui/input";
 import { cn } from "@/lib/utils";
 import { authClient } from "@/lib/auth-client";
+import { Github } from "lucide-react";
 
 const SignUpSchema = z.object({
     email: z.email("Please enter a valid email address"),
@@ -95,6 +96,7 @@ export function SignUpForm() {
                                         type="button"
                                         disabled={isPending}
                                     >
+                                        <Github/>
                                         Continue with GitHub
                                     </Button>
                                     <Button
@@ -103,6 +105,7 @@ export function SignUpForm() {
                                         type="button"
                                         disabled={isPending}
                                     >
+                                    
                                         Continue with Google
                                     </Button>
                                 </div>

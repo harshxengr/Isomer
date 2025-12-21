@@ -1,3 +1,4 @@
+import { SignOutBtn } from "@/components/auth/signout-btn";
 import { requireAuth } from "@/lib/auth-utils";
 import { caller } from "@/trpc/server";
 
@@ -10,6 +11,7 @@ export default async function Home() {
     <div>
       hi thete
       {JSON.stringify(data)}
+      <SignOutBtn/>
     </div>
   );
 }
