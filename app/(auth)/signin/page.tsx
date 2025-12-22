@@ -1,14 +1,10 @@
 import { SignInForm } from "@/components/auth/signin-form";
 import { requireUnAuth } from "@/lib/auth-utils";
 
-const SignIn = async () => {
+const Page = async () => {
     await requireUnAuth();
     
-    return (
-        <div>
-            <SignInForm/>
-        </div>
-    )
+    return  <SignInForm/>;
 }
 
-export default SignIn;
+export default Page;

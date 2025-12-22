@@ -70,3 +70,9 @@ model Verification {
   @@index([identifier])
   @@map("verification")
 }
+
+// inngest
+model Workflow {
+  id String @id @default(cuid())
+  name String
+}
