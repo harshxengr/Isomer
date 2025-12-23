@@ -14,20 +14,30 @@ export default function Home() {
   const queryClient = useQueryClient();
 
   // const data = await caller.getUsers();
-  const {data} = useQuery(trpc.getWorkflows.queryOptions());
+  const { data } = useQuery(trpc.getWorkflows.queryOptions());
+
   const create = useMutation(trpc.createWorkflow.mutationOptions({
     onSuccess: () => {
       toast.success("Job queued");
     }
   }));
-  
+
+  const textAi = useMutation(trpc.textAi.mutationOptions({
+    onSuccess: () => {
+      toast.success("TextAi job queued");
+    }
+  }));
+
   return (
     <div>
       hi thete
       {JSON.stringify(data)}
-      <SignOutBtn/>
+      <SignOutBtn />
       <Button disabled={create.isPending} onClick={() => create.mutate()}>
         Create workflow
+      </Button>
+      <Button disabled={textAi.isPending} onClick={() => textAi.mutate()}>
+        Test Ai
       </Button>
     </div>
   );
