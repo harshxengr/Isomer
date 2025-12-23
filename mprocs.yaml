@@ -1,6 +1,6 @@
 procs:
   inngest:
-    cmd: ["bun", "run", "inngest:dev"]
+    cmd: ["npx", "run", "inngest:dev"]
 
   next: 
     cmd: ["bun", "run", "dev"]
