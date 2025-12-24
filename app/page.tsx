@@ -25,6 +25,9 @@ export default function Home() {
   const textAi = useMutation(trpc.textAi.mutationOptions({
     onSuccess: () => {
       toast.success("TextAi job queued");
+    },
+    onError: () => {
+      toast.error("Something went wrong");
     }
   }));
 
