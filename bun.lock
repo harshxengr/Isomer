@@ -13,6 +13,7 @@
         "@polar-sh/sdk": "^0.42.1",
         "@prisma/adapter-pg": "^7.2.0",
         "@prisma/client": "^7.2.0",
+        "@radix-ui/react-alert-dialog": "^1.1.15",
         "@radix-ui/react-dialog": "^1.1.15",
         "@radix-ui/react-label": "^2.1.8",
         "@radix-ui/react-separator": "^1.1.8",
@@ -36,6 +37,7 @@
         "next-themes": "^0.4.6",
         "react": "19.2.1",
         "react-dom": "19.2.1",
+        "react-error-boundary": "^6.0.1",
         "react-hook-form": "^7.69.0",
         "server-only": "^0.0.1",
         "sonner": "^2.0.7",
@@ -1708,6 +1710,8 @@
     "react-day-picker": ["react-day-picker@9.13.0", "", { "dependencies": { "@date-fns/tz": "^1.4.1", "date-fns": "^4.1.0", "date-fns-jalali": "^4.1.0-0" }, "peerDependencies": { "react": ">=16.8.0" } }, "sha512-euzj5Hlq+lOHqI53NiuNhCP8HWgsPf/bBAVijR50hNaY1XwjKjShAnIe8jm8RD2W9IJUvihDIZ+KrmqfFzNhFQ=="],
 
     "react-dom": ["react-dom@19.2.1", "", { "dependencies": { "scheduler": "^0.27.0" }, "peerDependencies": { "react": "^19.2.1" } }, "sha512-ibrK8llX2a4eOskq1mXKu/TGZj9qzomO+sNfO98M6d9zIPOEhlBkMkBUBLd1vgS0gQsLDBzA+8jJBVXDnfHmJg=="],
+
+    "react-error-boundary": ["react-error-boundary@6.0.1", "", { "peerDependencies": { "react": "^18.0.0 || ^19.0.0", "react-dom": "^18.0.0 || ^19.0.0" } }, "sha512-zArgQpjJUN1ZLMEKWtifxQweW3yfvwL5j2nh3Pesze1qG6r5oCDMy/TA97bUF01wy4xCeeL4/pd8GHmvEsP3Bg=="],
 
     "react-hook-form": ["react-hook-form@7.69.0", "", { "peerDependencies": { "react": "^16.8.0 || ^17 || ^18 || ^19" } }, "sha512-yt6ZGME9f4F6WHwevrvpAjh42HMvocuSnSIHUGycBqXIJdhqGSPQzTpGF+1NLREk/58IdPxEMfPcFCjlMhclGw=="],
 
