@@ -1,6 +1,0 @@
-procs:
-  inngest:
-    cmd: ["npx", "run", "inngest:dev"]
-
-  next: 
-    cmd: ["bun", "run", "dev"]
