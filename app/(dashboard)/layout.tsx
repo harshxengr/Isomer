@@ -1,6 +1,6 @@
-import AppSidebar from "@/components/custom/app-sidebar"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { ReactNode } from "react"
+import AppSidebar from "@/components/custom/app-sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { ReactNode } from "react";
 
 const Layout = ({ children }: { children: ReactNode }) => {
     return (
@@ -10,7 +10,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
                 {children}
             </SidebarInset>
         </SidebarProvider>
-    )
-}
+    );
+};
 
-export default Layout
+export default Layout;

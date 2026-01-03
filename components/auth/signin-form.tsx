@@ -47,22 +47,21 @@ export function SignInForm() {
     })
 
     const onSubmit = async (values: SignInFormValues) => {
-        console.log(values);
         await authClient.signIn.email({
             email: values.email,
             password: values.password,
-            callbackURL: "/"
+            callbackURL: "/workflows"
         },
             {
                 onSuccess: () => {
-                    router.push("/");
+                    router.push("/workflows");
                 },
                 onError: (ctx) => {
                     toast.error(ctx.error.message);
                 }
             }
-        )
-    }
+        );
+    };
 
     const isPending = form.formState.isSubmitting;
 

@@ -1,52 +1,74 @@
 import { PAGINATION } from "@/config/constants";
 import prisma from "@/lib/db";
 import { createTRPCRouter, protectedProcedure, premiumProcedure } from "@/trpc/init";
+import { TRPCError } from "@trpc/server";
 import z from "zod";
 
 export const workflowsRouter = createTRPCRouter({
-    create: premiumProcedure.mutation(({ ctx }) => {
+    create: protectedProcedure.mutation(({ ctx }) => { // i have to do it premium
         return prisma.workflow.create({
             data: {
                 name: "TODO",
                 userId: ctx.auth.user.id,
             }
-        })
+        });
     }),
 
     remove: protectedProcedure
         .input(z.object({ id: z.string() }))
-        .mutation(({ ctx, input }) => {
+        .mutation(async ({ ctx, input }) => {
+            // First verify the workflow belongs to the user
+            const workflow = await prisma.workflow.findUnique({
+                where: { id: input.id }
+            });
+
+            if (!workflow || workflow.userId !== ctx.auth.user.id) {
+                throw new TRPCError({
+                    code: "NOT_FOUND",
+                    message: "Workflow not found or access denied"
+                });
+            }
+
             return prisma.workflow.delete({
-                where: {
-                    id: input.id,
-                    userId: ctx.auth.user.id,
-                }
-            })
+                where: { id: input.id }
+            });
         }),
 
     updateName: protectedProcedure
         .input(z.object({ id: z.string(), name: z.string().min(1) }))
-        .mutation(({ ctx, input }) => {
+        .mutation(async ({ ctx, input }) => {
+            // First verify the workflow belongs to the user
+            const workflow = await prisma.workflow.findUnique({
+                where: { id: input.id }
+            });
+
+            if (!workflow || workflow.userId !== ctx.auth.user.id) {
+                throw new TRPCError({
+                    code: "NOT_FOUND",
+                    message: "Workflow not found or access denied"
+                });
+            }
+
             return prisma.workflow.update({
-                where: {
-                    id: input.id,
-                    userId: ctx.auth.user.id
-                },
+                where: { id: input.id },
                 data: {
                     name: input.name
                 }
-            })
+            });
         }),
 
     getOne: protectedProcedure
         .input(z.object({ id: z.string() }))
-        .query(({ ctx, input }) => {
-            return prisma.workflow.findUnique({
-                where: {
-                    id: input.id,
-                    userId: ctx.auth.user.id
-                }
-            })
+        .query(async ({ ctx, input }) => {
+            const workflow = await prisma.workflow.findUnique({
+                where: { id: input.id }
+            });
+
+            if (!workflow || workflow.userId !== ctx.auth.user.id) {
+                return null;
+            }
+
+            return workflow;
         }),
 
     getMany: protectedProcedure
@@ -102,6 +124,6 @@ export const workflowsRouter = createTRPCRouter({
                 totalPages,
                 hasNextPage,
                 hasPreviousPage
-            }
+            };
         })
-})
+});

@@ -1,6 +1,11 @@
 import { requireAuth } from "@/lib/auth-utils";
 import { HydrateClient } from "@/trpc/server";
-import { WorkflowsContainer, WorkflowsList } from "@/workflows/components/workflows";
+import {
+    WorkflowsContainer,
+    WorkflowsErrorView,
+    WorkflowsList,
+    WorkflowsLoadingView
+} from "@/workflows/components/workflows";
 import { workflowsParamsLoader } from "@/workflows/server/params-loader";
 import { prefetchWorkflows } from "@/workflows/server/prefetch";
 import type { SearchParams } from "nuqs/server";
@@ -11,7 +16,7 @@ type Props = {
     searchParams: Promise<SearchParams>
 }
 
-const Page = async ({searchParams}: Props) => {
+const Page = async ({ searchParams }: Props) => {
     await requireAuth();
 
     const params = await workflowsParamsLoader(searchParams);
@@ -20,8 +25,8 @@ const Page = async ({searchParams}: Props) => {
     return (
         <WorkflowsContainer>
             <HydrateClient>
-                <ErrorBoundary fallback={<p>Error!</p>}>
-                    <Suspense fallback={<p>Loading...</p>}>
+                <ErrorBoundary fallback={<WorkflowsErrorView />}>
+                    <Suspense fallback={<WorkflowsLoadingView />}>
                         <WorkflowsList />
                     </Suspense>
                 </ErrorBoundary>
