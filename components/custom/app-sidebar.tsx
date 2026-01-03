@@ -8,7 +8,6 @@ import {
     LogOutIcon,
     StarIcon
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -17,14 +16,13 @@ import {
     SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
-    SidebarGroupLabel,
     SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 import { authClient } from "@/lib/auth-client";
-import { useHasActiveSubscription, useSubscription } from "@/subscriptions/hooks/use-subscription";
+import { useHasActiveSubscription } from "@/subscriptions/hooks/use-subscription";
 
 const menuItems = [
     {
@@ -47,7 +45,7 @@ const menuItems = [
             },
         ]
     }
-]
+];
 
 const AppSidebar = () => {
     const router = useRouter();
@@ -60,12 +58,9 @@ const AppSidebar = () => {
                 <SidebarMenuItem>
                     <SidebarMenuButton asChild className="gap-x-4 h-10 px-4">
                         <Link href="/" prefetch>
-                            <Image
-                                src=""
-                                alt="Isomer"
-                                width={30}
-                                height={30}
-                            />
+                            <div className="size-[30px] rounded-md bg-primary flex items-center justify-center">
+                                <span className="text-primary-foreground font-bold text-sm">I</span>
+                            </div>
                             <span className="font-semibold text-sm">
                                 Isomer
                             </span>
@@ -137,7 +132,7 @@ const AppSidebar = () => {
                             onClick={() => authClient.signOut({
                                 fetchOptions: {
                                     onSuccess: () => {
-                                        router.push("/signin")
+                                        router.push("/signin");
                                     }
                                 }
                             })}
@@ -149,7 +144,7 @@ const AppSidebar = () => {
                 </SidebarMenu>
             </SidebarFooter>
         </Sidebar>
-    )
-}
+    );
+};
 
-export default AppSidebar
+export default AppSidebar;
