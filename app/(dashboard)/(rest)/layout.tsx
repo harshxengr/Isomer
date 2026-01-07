@@ -1,15 +1,13 @@
+import type { ReactNode } from "react";
 import AppHeader from "@/components/custom/app-header";
-import { ReactNode } from "react";
 
 const Layout = ({ children }: { children: ReactNode }) => {
-    return (
-        <>
-            <AppHeader/>
-            <main className="flex-1">
-                {children}
-            </main>
-        </>
-    );
+	return (
+		<>
+			<AppHeader />
+			<main className="flex-1">{children}</main>
+		</>
+	);
 };
 
 export default Layout;
